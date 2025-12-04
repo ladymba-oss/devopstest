@@ -1,9 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-<title>Test DevOps</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LM Biouty - Parfumerie & Bien-être</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: #fff;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(135deg, #ff4f9a, #ff7b00);
+      padding: 120px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    h1 {
+      font-size: 48px;
+      margin: 0;
+    }
+
+    #dynamic-text {
+      font-size: 28px;
+      margin-top: 10px;
+      font-weight: 300;
+      min-height: 40px;
+    }
+
+    section {
+      padding: 60px 10%;
+    }
+
+    .categories {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .cat {
+      background: #ffeef8;
+      padding: 20px;
+      border-radius: 15px;
+      min-width: 200px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(255, 76, 146, 0.2);
+    }
+
+    .tarifs {
+      margin-top: 30px;
+      background: rgba(255, 76, 146, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    }
+
+    .tarif-item {
+      background: white;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    form {
+      background: #fff3fb;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 20px rgba(255, 76, 146, 0.2);
+      margin-top: 40px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 8px;
+      border: 1px solid #ffd2eb;
+    }
+
+    button {
+      width: 100%;
+      padding: 15px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #ff4f9a, #ff7b00);
+      color: white;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #ff4f9a;
+      color: white;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
-<h1>Bienvenue la Boutique Lm.Biouty</h1>
+  <header>
+    <h1>LM Biouty</h1>
+    <div id="dynamic-text"></div>
+  </header>
+
+  <section>
+    <h2>À propos</h2>
+    <p>
+      Créée en 2022, LM Biouty se distingue par ses parfums aux notes légères,
+      orientales et françaises. Notre espace spa vous propose une expérience de
+      relaxation unique, pensée pour votre bien-être.
+    </p>
+
+    <h3>Nos catégories Bien-être</h3>
+    <div class="categories">
+      <div class="cat">Bien-être</div>
+      <div class="cat">SkinCare</div>
+      <div class="cat">Dous-Doux</div>
+      <div class="cat">Studios Trésor Éthéré</div>
+      <div class="cat">Espace Podcast</div>
+      <div class="cat">Séance Photo</div>
+      <div class="cat">Plateforme de tournage</div>
+    </div>
+
+    <h3>Grille tarifaire</h3>
+    <div class="tarifs">
+      <div class="tarif-item">Pass Princesse – 15 000 FCFA</div>
+      <div class="tarif-item">Pass Souveraine – 25 000 FCFA</div>
+      <div class="tarif-item">Pass Reine – 40 000 FCFA</div>
+    </div>
+
+    <h3>Réservation</h3>
+    <form>
+      <input type="text" placeholder="Nom" required />
+      <input type="text" placeholder="Prénom" required />
+      <input type="date" placeholder="Date de naissance" required />
+      <select required>
+        <option value="">Choisissez votre Pass</option>
+        <option>Princesse</option>
+        <option>Souveraine</option>
+        <option>Reine</option>
+      </select>
+      <button type="submit">Envoyer au +241 76 30 15 07</button>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 LM Biouty — Parfumerie & Bien-être
+  </footer>
+
+  <script>
+    const text = "Bienvenue à LM Biouty";
+    let i = 0;
+    function typeWriter() {
+      if (i < text.length) {
+        document.getElementById("dynamic-text").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+      }
+    }
+    typeWriter();
+  </script>
 </body>
 </html>
