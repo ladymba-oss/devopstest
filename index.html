@@ -1,170 +1,260 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LM Biouty - Parfumerie & Bien-être</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LM.Biouty - Parfumerie et Spa</title>
   <style>
+    /* Fonts */
     body {
+      font-family: "Times New Roman", Arial, sans-serif;
       margin: 0;
-      font-family: "Poppins", sans-serif;
-      background: #fff;
+      padding: 0;
+      background-color: #fff;
       color: #333;
     }
 
-    header {
-      background: linear-gradient(135deg, #ff4f9a, #ff7b00);
-      padding: 120px 20px;
-      text-align: center;
-      color: white;
-    }
+    /* Couleurs */
+    .rose { color: #ff00ff; } /* magenta */
+    .orange { color: #ff8000; }
+    .blanc { color: #fff; }
 
-    h1 {
-      font-size: 48px;
+    /* Section accueil */
+    #accueil {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(135deg, #ff00ff, #ff8000);
+      color: #fff;
+      text-align: center;
+    }
+    #accueil h1 {
+      font-family: "Brush Script MT", cursive; /* style manuscrit/signature */
+      font-size: 3em;
       margin: 0;
     }
-
-    #dynamic-text {
-      font-size: 28px;
+    #accueil p {
+      font-size: 1.5em;
       margin-top: 10px;
-      font-weight: 300;
-      min-height: 40px;
     }
 
+    /* Effet mot à mot */
+    .dynamic-text span {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    .dynamic-text span.visible {
+      opacity: 1;
+    }
+
+    /* Section description */
     section {
-      padding: 60px 10%;
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      font-size: 2em;
+      margin-bottom: 20px;
+      color: #ff00ff;
+    }
+    p {
+      text-align: center;
+      font-size: 1.1em;
+      line-height: 1.6em;
+      margin-bottom: 40px;
     }
 
-    .categories {
+    /* Zone spa / studios */
+    .cards {
       display: flex;
-      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
     }
-
-    .cat {
-      background: #ffeef8;
-      padding: 20px;
+    .card {
+      background-color: #fff0f5;
       border-radius: 15px;
-      min-width: 200px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 250px;
       text-align: center;
-      box-shadow: 0 4px 15px rgba(255, 76, 146, 0.2);
     }
 
-    .tarifs {
-      margin-top: 30px;
-      background: rgba(255, 76, 146, 0.05);
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-    }
-
-    .tarif-item {
-      background: white;
-      margin: 15px 0;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    form {
-      background: #fff3fb;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(255, 76, 146, 0.2);
-      margin-top: 40px;
-    }
-
-    input, select {
+    /* Grille tarifaire */
+    table {
       width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ffd2eb;
+      max-width: 800px;
+      margin: auto;
+      border-collapse: collapse;
+      background-color: #fff8f8;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-
-    button {
-      width: 100%;
+    th, td {
       padding: 15px;
+      text-align: center;
+      border-bottom: 1px solid #ffe0f0;
+    }
+    th {
+      background-color: #ff00ff;
+      color: #fff;
+    }
+    td {
+      background-color: #fff0f5;
+    }
+
+    /* Formulaire réservation */
+    form {
+      max-width: 600px;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background-color: #fff0f5;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    input, select {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ffb6c1;
+      font-size: 1em;
+    }
+    button {
+      padding: 12px;
+      background-color: #ff00ff;
+      color: #fff;
       border: none;
       border-radius: 10px;
-      background: linear-gradient(135deg, #ff4f9a, #ff7b00);
-      color: white;
-      font-size: 18px;
+      font-size: 1em;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff4dff;
     }
 
-    footer {
+    /* Signature */
+    .signature {
       text-align: center;
-      padding: 20px;
-      background: #ff4f9a;
-      color: white;
-      margin-top: 40px;
+      font-family: "Brush Script MT", cursive;
+      font-size: 2em;
+      margin: 40px 0;
+      color: #ff00ff;
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>LM Biouty</h1>
-    <div id="dynamic-text"></div>
-  </header>
 
+  <!-- Accueil -->
+  <section id="accueil">
+    <h1>LM.Biouty</h1>
+    <p class="dynamic-text"></p>
+  </section>
+
+  <!-- Description boutique -->
   <section>
-    <h2>À propos</h2>
+    <h2>Notre Boutique</h2>
     <p>
-      Créée en 2022, LM Biouty se distingue par ses parfums aux notes légères,
-      orientales et françaises. Notre espace spa vous propose une expérience de
-      relaxation unique, pensée pour votre bien-être.
+        Créée en 2022, LM Biouty est une maison de parfumerie et de bien-être qui s’inspire de la douceur, du raffinement et de l’élégance féminine. Pensée pour les femmes modernes, sensibles et lumineuses, la marque se distingue par son univers éthéré, délicat et profondément artistique.
+LM Biouty se démarque par ses parfums aux notes légères orientales et françaises, apportant élégance et raffinement à chaque expérience olfactive.
+        Découvrez également notre zone spa de relaxation, proposant différentes catégories :
+        Bien-être, SkinCare, Doux-Doux, et nos autres espaces : studios, podcast, séance photo et plateforme de tournage au sein des Studios LM Biouty, pour un univers complet dédié à la créativité, à la détente et à l’expression personnelle. <strong>Trésor Éthéré</strong>.
     </p>
+  </section>
 
-    <h3>Nos catégories Bien-être</h3>
-    <div class="categories">
-      <div class="cat">Bien-être</div>
-      <div class="cat">SkinCare</div>
-      <div class="cat">Dous-Doux</div>
-      <div class="cat">Studios Trésor Éthéré</div>
-      <div class="cat">Espace Podcast</div>
-      <div class="cat">Séance Photo</div>
-      <div class="cat">Plateforme de tournage</div>
+  <!-- Zone Spa et Studios -->
+  <section>
+    <h2>Nos Espaces</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Bien-être</h3>
+        <p>Relaxation et détente profonde pour un esprit apaisé.</p>
+      </div>
+      <div class="card">
+        <h3>SkinCare</h3>
+        <p>Soins de la peau adaptés pour chaque type de peau.</p>
+      </div>
+      <div class="card">
+        <h3>Doux-Doux</h3>
+        <p>Moments doux pour chouchouter votre corps et votre esprit.</p>
+      </div>
+      <div class="card">
+        <h3>Studios Trésor Éthéré</h3>
+        <p>Podcast, photo et tournage d’émissions dans un cadre professionnel.</p>
+      </div>
     </div>
+  </section>
 
-    <h3>Grille tarifaire</h3>
-    <div class="tarifs">
-      <div class="tarif-item">Pass Princesse – 15 000 FCFA</div>
-      <div class="tarif-item">Pass Souveraine – 25 000 FCFA</div>
-      <div class="tarif-item">Pass Reine – 40 000 FCFA</div>
-    </div>
+  <!-- Grille tarifaire -->
+  <section>
+    <h2>Tarifs</h2>
+    <table>
+      <tr>
+        <th>Service</th>
+        <th>Prix</th>
+      </tr>
+      <tr>
+        <td>Bien-être</td>
+        <td>30.850fcfa</td>
+      </tr>
+      <tr>
+        <td>SkinCare</td>
+        <td>45.000 fcfa</td>
+      </tr>
+      <tr>
+        <td>Doux-Doux</td>
+        <td>25.000fcfa</td>
+      </tr>
+      <tr>
+        <td>Studios Trésor Éthéré</td>
+        <td>50.000fcfa</td>
+      </tr>
+    </table>
+  </section>
 
-    <h3>Réservation</h3>
-    <form>
-      <input type="text" placeholder="Nom" required />
-      <input type="text" placeholder="Prénom" required />
-      <input type="date" placeholder="Date de naissance" required />
-      <select required>
-        <option value="">Choisissez votre Pass</option>
-        <option>Princesse</option>
-        <option>Souveraine</option>
-        <option>Reine</option>
+  <!-- Formulaire réservation -->
+  <section>
+    <h2>Réservez votre séance</h2>
+    <form action="tel:+24176301507" method="tel">
+      <input type="text" name="nom" placeholder="Nom" required>
+      <input type="text" name="prenom" placeholder="Prénom" required>
+      <select name="pass" required>
+        <option value="">Choisissez votre pass</option>
+        <option value="Reine">Reine</option>
+        <option value="Souveraine">Souveraine</option>
+        <option value="Princess">Princesse</option>
       </select>
-      <button type="submit">Envoyer au +241 76 30 15 07</button>
+      <input type="date" name="date_naissance" required>
+      <button type="submit">Envoyer</button>
     </form>
   </section>
 
-  <footer>
-    © 2025 LM Biouty — Parfumerie & Bien-être
-  </footer>
+  <!-- Signature -->
+  <div class="signature">
+    Loreine MBA, CEO
+  </div>
 
+  <!-- Script effet mot à mot -->
   <script>
     const text = "Bienvenue à LM Biouty";
-    let i = 0;
-    function typeWriter() {
-      if (i < text.length) {
-        document.getElementById("dynamic-text").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typeWriter, 100);
-      }
-    }
-    typeWriter();
+    const container = document.querySelector(".dynamic-text");
+
+    text.split(" ").forEach((word, index) => {
+      const span = document.createElement("span");
+      span.textContent = word + " ";
+      container.appendChild(span);
+      setTimeout(() => {
+        span.classList.add("visible");
+      }, index * 400);
+    });
   </script>
+
 </body>
 </html>
