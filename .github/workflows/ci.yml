@@ -33,12 +33,12 @@ jobs:
       # Build de l'image Docker
       - name: Build Docker image
         run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/tresor_ethere:latest .
+          docker build -t ladymba/tresor_ethere:latest .
 
       # Push de l'image vers DockerHub
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKER_USERNAME }}/tresor_ethere:latest
+          docker push ladymba/tresor_ethere:latest
 
   deploy_ftp:
     runs-on: ubuntu-latest
